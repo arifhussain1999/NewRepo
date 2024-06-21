@@ -26,6 +26,7 @@ Partial Class Form1
         Me.btnCreateSubmission = New System.Windows.Forms.Button()
         Me.btnDeleteSubmission = New System.Windows.Forms.Button()
         Me.txtPhoneNumberToDelete = New System.Windows.Forms.TextBox()
+        Me.Label1 = New System.Windows.Forms.Label()
         Me.SuspendLayout()
         '
         'btnViewSubmissions
@@ -65,18 +66,28 @@ Partial Class Form1
         'txtPhoneNumberToDelete
         '
         Me.txtPhoneNumberToDelete.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.txtPhoneNumberToDelete.Location = New System.Drawing.Point(505, 101)
+        Me.txtPhoneNumberToDelete.Location = New System.Drawing.Point(500, 105)
         Me.txtPhoneNumberToDelete.Multiline = True
         Me.txtPhoneNumberToDelete.Name = "txtPhoneNumberToDelete"
-        Me.txtPhoneNumberToDelete.Size = New System.Drawing.Size(171, 33)
+        Me.txtPhoneNumberToDelete.Size = New System.Drawing.Size(171, 32)
         Me.txtPhoneNumberToDelete.TabIndex = 3
         Me.txtPhoneNumberToDelete.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
+        '
+        'Label1
+        '
+        Me.Label1.AutoSize = True
+        Me.Label1.Location = New System.Drawing.Point(539, 86)
+        Me.Label1.Name = "Label1"
+        Me.Label1.Size = New System.Drawing.Size(106, 13)
+        Me.Label1.TabIndex = 4
+        Me.Label1.Text = "Enter Phone Number"
         '
         'Form1
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(800, 450)
+        Me.Controls.Add(Me.Label1)
         Me.Controls.Add(Me.txtPhoneNumberToDelete)
         Me.Controls.Add(Me.btnDeleteSubmission)
         Me.Controls.Add(Me.btnCreateSubmission)
@@ -92,4 +103,5 @@ Partial Class Form1
     Friend WithEvents btnCreateSubmission As Button
     Friend WithEvents btnDeleteSubmission As Button
     Friend WithEvents txtPhoneNumberToDelete As TextBox
+    Friend WithEvents Label1 As Label
 End Class
