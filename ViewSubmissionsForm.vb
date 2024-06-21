@@ -9,11 +9,12 @@ Public Class ViewSubmissionsForm
     Public Sub New()
         InitializeComponent()
         LoadSubmissions()
+        Me.KeyPreview = True
     End Sub
 
     Private Async Sub LoadSubmissions()
         Using client As New HttpClient()
-            client.BaseAddress = New Uri("http://localhost:3000") ' Replace with your backend URL
+            client.BaseAddress = New Uri("http://localhost:3000")
             client.DefaultRequestHeaders.Accept.Clear()
             client.DefaultRequestHeaders.Accept.Add(New MediaTypeWithQualityHeaderValue("application/json"))
 
@@ -61,4 +62,13 @@ Public Class ViewSubmissionsForm
             DisplaySubmission(currentIndex)
         End If
     End Sub
+
+    Private Sub ViewSubmissionsForm_KeyDown(sender As Object, e As KeyEventArgs) Handles MyBase.KeyDown
+        If e.Control AndAlso e.KeyCode = Keys.P Then ' Example shortcut Ctrl + P
+            btnPrevious.PerformClick()
+        ElseIf e.Control AndAlso e.KeyCode = Keys.N Then ' Example shortcut Ctrl + N
+            btnNext.PerformClick()
+        End If
+    End Sub
+
 End Class

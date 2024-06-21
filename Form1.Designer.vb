@@ -24,6 +24,8 @@ Partial Class Form1
     Private Sub InitializeComponent()
         Me.btnViewSubmissions = New System.Windows.Forms.Button()
         Me.btnCreateSubmission = New System.Windows.Forms.Button()
+        Me.btnDeleteSubmission = New System.Windows.Forms.Button()
+        Me.txtPhoneNumberToDelete = New System.Windows.Forms.TextBox()
         Me.SuspendLayout()
         '
         'btnViewSubmissions
@@ -49,19 +51,45 @@ Partial Class Form1
         Me.btnCreateSubmission.Text = "Create New Submission (Ctrl + N)"
         Me.btnCreateSubmission.UseVisualStyleBackColor = False
         '
+        'btnDeleteSubmission
+        '
+        Me.btnDeleteSubmission.BackColor = System.Drawing.SystemColors.ActiveCaption
+        Me.btnDeleteSubmission.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btnDeleteSubmission.Location = New System.Drawing.Point(203, 86)
+        Me.btnDeleteSubmission.Name = "btnDeleteSubmission"
+        Me.btnDeleteSubmission.Size = New System.Drawing.Size(245, 51)
+        Me.btnDeleteSubmission.TabIndex = 2
+        Me.btnDeleteSubmission.Text = "Delete Submission (Ctrl + D)"
+        Me.btnDeleteSubmission.UseVisualStyleBackColor = False
+        '
+        'txtPhoneNumberToDelete
+        '
+        Me.txtPhoneNumberToDelete.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.txtPhoneNumberToDelete.Location = New System.Drawing.Point(505, 101)
+        Me.txtPhoneNumberToDelete.Multiline = True
+        Me.txtPhoneNumberToDelete.Name = "txtPhoneNumberToDelete"
+        Me.txtPhoneNumberToDelete.Size = New System.Drawing.Size(171, 33)
+        Me.txtPhoneNumberToDelete.TabIndex = 3
+        Me.txtPhoneNumberToDelete.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
+        '
         'Form1
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(800, 450)
+        Me.Controls.Add(Me.txtPhoneNumberToDelete)
+        Me.Controls.Add(Me.btnDeleteSubmission)
         Me.Controls.Add(Me.btnCreateSubmission)
         Me.Controls.Add(Me.btnViewSubmissions)
         Me.Name = "Form1"
         Me.Text = "Form1"
         Me.ResumeLayout(False)
+        Me.PerformLayout()
 
     End Sub
 
     Friend WithEvents btnViewSubmissions As Button
     Friend WithEvents btnCreateSubmission As Button
+    Friend WithEvents btnDeleteSubmission As Button
+    Friend WithEvents txtPhoneNumberToDelete As TextBox
 End Class
