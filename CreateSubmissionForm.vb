@@ -1,8 +1,7 @@
 ﻿Imports System.Net.Http
 Imports System.Text
-Imports System.Text.Json
-Imports System.Threading.Tasks
 Imports Newtonsoft.Json
+Imports System.Threading.Tasks
 
 Public Class CreateSubmissionForm
 
@@ -45,21 +44,24 @@ Public Class CreateSubmissionForm
             .ElapsedTime = stopwatch.Elapsed.ToString("hh\:mm\:ss")
         }
 
-        ' Convert the submission object to JSON
-        Dim json As String = JsonSerializer.Serialize(submission)
+        ' Convert the submission object to JSON using Newtonsoft.Json
+        Dim json As String = JsonConvert.SerializeObject(submission)
+        Console.WriteLine($"{json}")
         Dim content As New StringContent(json, Encoding.UTF8, "application/json")
 
-        Try
-            Dim response As HttpResponseMessage = Await httpClient.PostAsync("http://localhost:3000/submit", content)
+        Using client As New HttpClient()
+            Try
+                Dim response As HttpResponseMessage = Await httpClient.PostAsync("http://localhost:3000/submit", content)
 
-            If response.IsSuccessStatusCode Then
-                MessageBox.Show("Form submitted successfully!")
-            Else
-                MessageBox.Show("Failed to submit form.")
-            End If
-        Catch ex As Exception
-            MessageBox.Show("An error occurred: " & ex.Message)
-        End Try
+                If response.IsSuccessStatusCode Then
+                    MessageBox.Show("Form submitted successfully!")
+                Else
+                    MessageBox.Show("Failed to submit form.")
+                End If
+            Catch ex As Exception
+                MessageBox.Show("An error occurred: " & ex.Message)
+            End Try
+        End Using
     End Sub
 
     Private Sub CreateSubmissionForm_KeyDown(sender As Object, e As KeyEventArgs)

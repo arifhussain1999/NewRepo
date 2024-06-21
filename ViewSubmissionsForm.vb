@@ -17,19 +17,23 @@ Public Class ViewSubmissionsForm
             client.DefaultRequestHeaders.Accept.Clear()
             client.DefaultRequestHeaders.Accept.Add(New MediaTypeWithQualityHeaderValue("application/json"))
 
-            Dim response As HttpResponseMessage = Await client.GetAsync("/submissions")
+            Try
+                Dim response As HttpResponseMessage = Await client.GetAsync("/submissions")
 
-            If response.IsSuccessStatusCode Then
-                Dim jsonResponse As String = Await response.Content.ReadAsStringAsync()
-                submissions = JsonConvert.DeserializeObject(Of List(Of Submission))(jsonResponse)
-                If submissions IsNot Nothing AndAlso submissions.Count > 0 Then
-                    DisplaySubmission(currentIndex)
+                If response.IsSuccessStatusCode Then
+                    Dim jsonResponse As String = Await response.Content.ReadAsStringAsync()
+                    submissions = JsonConvert.DeserializeObject(Of List(Of Submission))(jsonResponse)
+                    If submissions IsNot Nothing AndAlso submissions.Count > 0 Then
+                        DisplaySubmission(currentIndex)
+                    Else
+                        MessageBox.Show("No submissions found.")
+                    End If
                 Else
-                    MessageBox.Show("No submissions found.")
+                    MessageBox.Show("Error loading submissions: " & response.ReasonPhrase)
                 End If
-            Else
-                MessageBox.Show("Error loading submissions.")
-            End If
+            Catch ex As Exception
+                MessageBox.Show("Error loading submissions: " & ex.Message)
+            End Try
         End Using
     End Sub
 
@@ -40,7 +44,7 @@ Public Class ViewSubmissionsForm
             stEmail.Text = submissions(index).Email
             stNumber.Text = submissions(index).PhoneNumber
             stGithub.Text = submissions(index).GitHubLink
-            stStopwatch.Text = submissions(index).ElapsedTime.ToString("hh\:mm\:ss")
+            stStopwatch.Text = submissions(index).ElapsedTime
         End If
     End Sub
 
